@@ -1,0 +1,135 @@
+:root{
+    --White: hsl(0, 0%, 100%);
+    --Off-white: hsl(0, 0%, 94%);
+    --Light-grey: hsl(0, 0%, 86%);
+    --Smokey-grey: hsl(0, 1%, 44%);
+    --Off-black: hsl(0, 0%, 8%);
+    --Purple: hsl(259, 100%, 65%);
+    --Light-red: hsl(0, 100%, 67%);
+}
+@font-face {
+    font-family:Pop;
+    src: url(./assets/fonts/Poppins-Regular.ttf);
+}
+*{
+    font-family: Pop;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--Off-white);
+}
+.container{
+    
+    padding: 50px;
+    border-radius: 20px 20px 80px 20px;
+    background-color: var(--White);
+    position: relative;
+}
+#input-container{
+    display: flex;
+    gap: 20px;
+    border-bottom: 2px solid var(--Light-grey);
+    padding-bottom: 30px;
+    padding-right: 100px;
+    margin-bottom: 40px;
+}
+input{
+    width: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    border:2px solid var(--Off-white);
+    outline: none;
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.input-day, .input-month, .input-year{
+    display: flex;
+    flex-direction: column;
+}
+input:focus{
+    border:2px solid var(--Purple);
+}
+.span1, .span2, .span3{
+    font-size: 13px;
+    font-weight: 600;
+}
+.logo-btn{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--Purple);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: none;
+    position: absolute;
+    top: 140px;
+    right: 50px;
+}
+.logo-btn:hover{
+    background-color: var(--Off-black);
+}
+.error-day, .error-month, .error-year{
+    font-size: 10px;
+    color: var(--Light-red);
+
+}
+.output-year, .output-month, .output-day{
+    color: var(--Purple);
+    font-size: 50px;
+    font-weight: 1000;
+}
+h1{
+    font-size: 50px;
+    font-weight: 1000;
+}
+
+
+@media(max-width:500px){
+    input{
+        width: 70px;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 15px;
+        font-weight: 700;
+        margin-top: 3.5px;
+        margin-bottom: 3.5px;
+    }
+    .container{
+        padding: 30px;
+        border-radius: 20px 20px 80px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    #input-container{
+        gap: 15px;
+        padding-bottom: 25px;
+        padding-right: 0;
+        margin-bottom: 35px;
+    }
+    .logo-btn{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 100px;
+        right: 130px;
+    }
+    .logo-btn>img{
+        height: 30px;
+        width: 30px;
+    }
+}
