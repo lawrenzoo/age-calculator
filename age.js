@@ -23,7 +23,7 @@ const head_year = document.querySelector('.span3')
 //events happening in the input_day so as to reach the conditions met
 //(not more than 31days)and the input is not filled. adding plus to make it a string 
 input_day.addEventListener('input', e =>{
-if(+input_day.value > 31){
+if(+input_day.value > 31 || +input_day.value<0){
     isValid = false;
     error_day.textContent= "Must be a valid date";
     return;
@@ -49,7 +49,7 @@ else {
 //events happening in the input_month so as to reach the conditions met
 //(not more than 12month)and the input is not filled. adding plus to make it a string 
 input_month.addEventListener('input', e =>{
-    if(+input_month.value > 12){
+    if(+input_month.value > 12 || +input_month.value<0 ){
         isValid = false;
         error_month.textContent= "Must be a valid month";
         return;
@@ -66,14 +66,14 @@ input_month.addEventListener('input', e =>{
         return;
     }
     else {
-        isValid=== true;
+        isValid= true;
         error_month.textContent= "";
         head_month.style.color="";
         input_month.style.border="";
     }
     })
 input_year.addEventListener('input', e =>{
-    if(+input_year.value >2023){
+    if(+input_year.value >2023 || +input_year.value<0){
         isValid = false;
         error_year.textContent= "Must be a valid year";
         return;
@@ -90,7 +90,7 @@ input_year.addEventListener('input', e =>{
         return;
     }
     else {
-        isValid=== true;
+        isValid= true;
         error_year.textContent= "";
         head_year.style.color="";
         input_year.style.border="";
@@ -100,20 +100,34 @@ input_year.addEventListener('input', e =>{
 submit_btn.addEventListener('click',calculateDate);
 function calculateDate(){
     if(isValid){
-    let birthday =`${input_month.value}/${input_day.value}/${input_year.value}`;
-    let birthObj = new Date(birthday);
-    let ageDiff = Date.now()-birthObj;
-    let newAgeDiff = new Date(ageDiff);
-    let ageDay = newAgeDiff.getUTCDay();
-    let ageMonth = newAgeDiff.getUTCMonth();
-    let ageYear = newAgeDiff.getUTCFullYear()-1970;
-    output_day.textContent =ageDay;
-    output_month.textContent=ageMonth;
-    output_year.textContent=ageYear
+    const birthObj = new Date(
+        input_year.value,
+        input_month.value - 1, // Month is 0-based (0 = January, 1 = February, ...)
+        input_day.value
+    );
+    
+    const today = new Date();
+    
+    // Calculate the difference in milliseconds
+    const ageDiff = today - birthObj;
+    console.log(ageDiff)
+    
+    // Convert milliseconds to years, months, and days
+    const millisecondsInYear = 365.25 * 24 * 60 * 60 * 1000; // Approximate average year length
+    const millisecondsInMonth = millisecondsInYear / 12; // Approximate average month length
+    
+    const ageYears = Math.floor(ageDiff / millisecondsInYear);
+    const ageMonths = Math.floor((ageDiff % millisecondsInYear) / millisecondsInMonth);
+    const ageDays = Math.floor((ageDiff % millisecondsInMonth) / (24 * 60 * 60 * 1000)); // Convert remaining milliseconds to days
+    
+    // console.log(`Age: ${ageYears} years, ${ageMonths} months, ${ageDays} days`);
+    output_day.textContent =ageDays;
+    output_month.textContent=ageMonths;
+    output_year.textContent=ageYears;
     return
     }
-    else{
-        alert('error')
-    }
+    // else{
+    //     alert('Input dd/mm/yyyy')
+    // }
 }
         

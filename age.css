@@ -19,11 +19,15 @@
 }
 body{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     min-height: 100vh;
     background-color: var(--Off-white);
+}
+body>h2{
+    color: var(--Off-black);
 }
 .container{
     
@@ -125,11 +129,15 @@ h1{
         border-radius: 50%;
         background-position: center;
         background-repeat: no-repeat;
-        top: 100px;
+        top: 107px;
         right: 130px;
     }
     .logo-btn>img{
         height: 30px;
         width: 30px;
+    }
+    .error-day, .error-month, .error-year{
+        font-size: 7px;
+        color: var(--Light-red);
     }
 }
